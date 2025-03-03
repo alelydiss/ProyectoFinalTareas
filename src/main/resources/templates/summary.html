@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resumen de Tareas</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+<div class="container">
+    <h1>Resumen de Tareas</h1>
+
+    <a href="/" class="back-link">⬅ Volver</a>
+
+    <div class="summary">
+        <p>Total de tareas: <span th:text="${tasks.size()}"></span></p>
+        <p>Completadas: <span th:text="${tasks.?[completada].size()}"></span></p>
+        <p>Pendientes: <span th:text="${tasks.?[!completada].size()}"></span></p>
+    </div>
+
+    <table>
+        <thead>
+        <tr>
+            <th>Título</th>
+            <th>Categoría</th>
+            <th>Estado</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="task : ${tasks}">
+            <td th:text="${task.titulo}"></td>
+            <td th:text="${task.category.name}"></td>
+            <td th:text="${task.completada} ? '✔ Completada' : '⏳ Pendiente'"></td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>

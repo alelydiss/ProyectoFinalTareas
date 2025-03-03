@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panel de Administrador</title>
+    <link rel="stylesheet" href="/css/admin.css">
+</head>
+<body>
+<div class="admin-container">
+    <h1>Panel de Administrador</h1>
+
+    <form th:action="@{/logout}" method="post">
+        <button type="submit" class="logout-btn">Salir de la vista de admin</button>
+    </form>
+
+    <section class="tasks-section">
+        <h2>Todas las Tareas</h2>
+        <table>
+            <thead>
+            <tr>
+                <th>Usuario</th>
+                <th>Título</th>
+                <th>Estado</th>
+                <th>Acciones</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="task : ${tasks}">
+                <td th:text="${task.user.username}"></td>
+                <td>
+                    <form th:action="@{/admin/tasks/edit}" method="post">
+                        <input type="hidden" name="id" th:value="${task.id}">
+                        <input type="text" name="title" th:value="${task.titulo}">
+                        <button type="submit">Actualizar</button>
+                    </form>
+                </td>
+                <td>
+                    <form th:action="@{/admin/tasks/status}" method="post">
+                        <input type="hidden" name="id" th:value="${task.id}">
+                        <select name="status">
+                            <option value="false" th:selected="${!task.completada}">Pendiente</option>
+                            <option value="true" th:selected="${task.completada}">Completada</option>
+                        </select>
+                        <button type="submit">Cambiar Estado</button>
+                    </form>
+                </td>
+                <td>
+                    <a th:href="@{/admin/tasks/delete/{id}(id=${task.id})}">Eliminar</a>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </section>
+
+    <section class="categories-section">
+        <h2>Administrar Categorías</h2>
+        <form action="/admin/categories/add" method="post">
+            <input type="text" name="name" placeholder="Nueva Categoría" required>
+            <button type="submit">Agregar</button>
+        </form>
+        <ul>
+            <li th:each="category : ${categories}">
+                <form th:action="@{/admin/categories/edit}" method="post">
+                    <input type="hidden" name="id" th:value="${category.id}">
+                    <input type="text" name="name" th:value="${category.name}">
+                    <button type="submit">Actualizar</button>
+                </form>
+                <a th:href="@{/admin/categories/delete/{id}(id=${category.id})}">Eliminar</a>
+            </li>
+        </ul>
+    </section>
+
+    <section class="users-section">
+        <h2>Gestión de Usuarios</h2>
+        <table>
+            <thead>
+            <tr>
+                <th>ID</th>
+                <th>Usuario</th>
+                <th>Acciones</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="user : ${users}">
+                <td th:text="${user.id}"></td>
+                <td th:text="${user.username}"></td>
+                <td>
+                    <a th:href="@{/admin/users/delete/{id}(id=${user.id})}">Eliminar</a>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </section>
+</div>
+</body>
+</html>

@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gestión de Tareas</title>
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+<div class="container">
+  <h1>Gestión de Tareas</h1>
+
+  <form th:action="@{/logout}" method="post">
+    <button type="submit" class="logout-btn">Cerrar Sesión</button>
+  </form>
+
+  <form method="get" action="/">
+    <input type="text" name="filtroNombre" placeholder="Buscar por título">
+
+    <select name="filtroCategoria">
+      <option value="">Todas las categorías</option>
+      <option th:each="cat : ${categories}" th:value="${cat.id}" th:text="${cat.name}"></option>
+    </select>
+
+    <select name="filtroEstado">
+      <option value="">Todos</option>
+      <option value="true">Completadas</option>
+      <option value="false">Pendientes</option>
+    </select>
+
+    <button type="submit">Filtrar</button>
+  </form>
+
+  <form th:action="@{/addTask}" method="post">
+    <input type="text" name="titulo" placeholder="Nueva tarea" required>
+
+    <select name="categoryId">
+      <option th:each="cat : ${categories}" th:value="${cat.id}" th:text="${cat.name}"></option>
+    </select>
+
+    <button type="submit">Agregar</button>
+  </form>
+
+  <p th:if="${errorMessage}" class="error" th:text="${errorMessage}"></p>
+
+  <table>
+    <thead>
+    <tr>
+      <th>Título</th>
+      <th>Categoría</th>
+      <th>Estado</th>
+      <th>Acciones</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="task : ${tasks}">
+      <td th:text="${task.titulo}"></td>
+      <td th:text="${task.category.name}"></td>
+      <td>
+        <span th:text="${task.completada} ? '✔ Completada' : '⏳ Pendiente'"></span>
+      </td>
+      <td>
+        <form th:action="@{/toggleTask}" method="post">
+          <input type="hidden" name="id" th:value="${task.id}">
+          <button type="submit">
+            <span th:text="${task.completada} ? 'Marcar como Pendiente' : 'Marcar como Completada'"></span>
+          </button>
+        </form>
+
+        <form th:action="@{/deleteTask}" method="post">
+          <input type="hidden" name="id" th:value="${task.id}">
+          <button type="submit" class="delete-btn">Eliminar</button>
+        </form>
+
+        <form th:action="@{/editTask}" method="post">
+          <input type="hidden" name="id" th:value="${task.id}">
+          <input type="text" name="nuevoTitulo" placeholder="Nuevo título" required>
+          <button type="submit">Editar</button>
+        </form>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+
+  <a href="/summary" class="summary-link">Ver Resumen</a>
+</div>
+</body>
+</html>

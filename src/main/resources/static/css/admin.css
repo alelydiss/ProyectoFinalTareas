@@ -1,0 +1,123 @@
+/* Estilos generales */
+body {
+    font-family: Arial, sans-serif;
+    background: #f4f4f4;
+    color: #333;
+    margin: 0;
+    padding: 0;
+}
+
+/* Contenedor principal */
+.admin-container {
+    max-width: 1200px;
+    margin: 30px auto;
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
+}
+
+/* Títulos */
+h2 {
+    text-align: center;
+    color: #5a67d8;
+    margin-bottom: 20px;
+}
+
+/* Botones */
+button {
+    background: #5a67d8;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button:hover {
+    background: #434190;
+}
+
+/* Tabla de tareas y usuarios */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+th, td {
+    padding: 10px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+th {
+    background: #5a67d8;
+    color: white;
+}
+
+/* Botones de acción en las tablas */
+.action-btn {
+    padding: 5px 10px;
+    font-size: 14px;
+    border-radius: 5px;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-block;
+}
+
+.edit-btn {
+    background: #ff9800;
+    color: white;
+}
+
+.delete-btn {
+    background: #e3342f;
+    color: white;
+}
+
+.edit-btn:hover {
+    background: #e68a00;
+}
+
+.delete-btn:hover {
+    background: #c53030;
+}
+
+/* Formulario de categorías */
+.category-form {
+    background: #f9f9f9;
+    padding: 15px;
+    border-radius: 8px;
+    margin-top: 20px;
+}
+
+.category-form input {
+    width: 80%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.category-form button {
+    margin-left: 10px;
+}
+
+/* Mensajes de error y éxito */
+.error {
+    background: rgba(255, 0, 0, 0.7);
+    color: white;
+    padding: 10px;
+    border-radius: 5px;
+    text-align: center;
+    margin-top: 10px;
+}
+
+.success {
+    background: rgba(0, 255, 0, 0.7);
+    color: white;
+    padding: 10px;
+    border-radius: 5px;
+    text-align: center;
+    margin-top: 10px;
+}

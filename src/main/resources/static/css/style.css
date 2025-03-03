@@ -1,0 +1,98 @@
+/* Estilos generales */
+body {
+    font-family: Arial, sans-serif;
+    background: #f4f4f9;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+}
+
+.container {
+    background: white;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    width: 80%;
+    max-width: 800px;
+}
+
+/* Botón de cerrar sesión */
+.logout-btn {
+    background: red;
+    color: white;
+    padding: 8px 12px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    float: right;
+}
+
+.logout-btn:hover {
+    background: darkred;
+}
+
+/* Formularios */
+form {
+    margin-bottom: 20px;
+}
+
+input, select, button {
+    padding: 10px;
+    margin: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+button {
+    background: #4CAF50;
+    color: white;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+button:hover {
+    background: #45a049;
+}
+
+/* Botón de eliminar */
+.delete-btn {
+    background: red;
+}
+
+.delete-btn:hover {
+    background: darkred;
+}
+
+/* Tabla */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+thead {
+    background: #4CAF50;
+    color: white;
+}
+
+th, td {
+    padding: 10px;
+    border: 1px solid #ddd;
+    text-align: center;
+}
+
+/* Enlace al resumen */
+.summary-link {
+    display: block;
+    margin-top: 20px;
+    color: #007bff;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.summary-link:hover {
+    text-decoration: underline;
+}
